@@ -1,10 +1,10 @@
 #!/bin/bash
 
 #xrandr --output eDP-1 --scale 0.6x0.6 &
-xrandr --output DP-4 --left-of DP-0
+#xrandr --output DP-4 --left-of DP-0
 #xautolock -corners ---- -locker ~/.scripts/wifilocker -time 5 &
 feh --bg-fill ~/.config/background/background.jpg &
-xinput set-prop 12 307 1 &
+#xinput set-prop 12 307 1 &
 #/usr/bin/libinput-gestures &
-sleep 5; xmodmap ~/.Xmodmap & 
-redshift&
+sleep 3; xmodmap ~/.Xmodmap & 
+#redshift&

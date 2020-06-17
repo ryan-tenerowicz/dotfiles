@@ -3,6 +3,7 @@ i3,/home/ryan/.config/i3/config,
 i3blocks,/home/ryan/.config/i3blocks/config,
 i3status,/home/ryan/.config/i3status/config,
 .vimrc,/home/ryan/.vimrc,
+nvimrc,/home/ryan/.config/nvim/init.vim
 .zshrc,/home/ryan/.zshrc,
 .Xmodmap,/home/ryan/.Xmodmap,
 libinput_gestures,/home/ryan/.config/libinput-gestures.conf,

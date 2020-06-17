@@ -1,0 +1,11 @@
+#!/bin/sh
+
+DIR=$(pwd)
+STATE_FILE=$DIR/forwardsstate
+
+if [ $(cat $STATE_FILE) -eq 0 ]; then
+  echo 1 > $STATE_FILE
+else
+  $(xdotool key "Alt+Right")
+  echo 0 > $STATE_FILE
+fi
