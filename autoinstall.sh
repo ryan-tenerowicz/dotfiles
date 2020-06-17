@@ -2,9 +2,9 @@
 
 I3_LINK="https://debian.sur5r.net/i3/pool/main/s/sur5r-keyring/sur5r-keyring_2020.02.03_all.deb keyring.deb SHA256:c5dd35231930e3c8d6a9d9539c846023fe1a08e4b073ef0d2833acd815d80d48"
 NEOVIM_LINK="https://github.com/neovim/neovim/releases/download/v0.4.3/nvim.appimage"
-ST_LINK="https://github.com/ryant18/st.git"
+ST_LINK="https://github.com/ryan-tenerowicz/st.git"
 NODEJS_LINK="https://nodejs.org/dist/v12.17.0/node-v12.17.0-linux-x64.tar.xz"
-DMENU_LINK="https://github.com/ryant18/dmenu.git"
+DMENU_LINK="https://github.com/ryan-tenerowicz/dmenu.git"
 
 ./install.sh
 
@@ -29,7 +29,7 @@ sudo mv nvim.appimage /usr/bin/nvim
 sudo apt-get -y install python3-pip
 pip3 install pynvim --upgrade
 
-sudo apt-get -y install xdg-utils npm nodejs cmake
+sudo apt-get -y install xdg-utils npm nodejs cmake xbindkeys
 sudo npm -g install instant-markdown-d
 
 #Need node later than 12 for coc

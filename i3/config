@@ -3,9 +3,9 @@ exec ~/.scripts/startup
 set $caps Mod1
 set $windows Mod4
 
-set $monitor_left "rdp1"
-set $monitor_center "rdp0"
-set $monitor_right "rdp2"
+set $monitor_left "Virtual2"
+set $monitor_center "Virtual1"
+set $monitor_right "Virtual3"
 
 workspace "5" output $monitor_left
 workspace "1" output $monitor_center

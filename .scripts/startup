@@ -7,4 +7,5 @@ feh --bg-fill ~/.config/background/background.jpg &
 #xinput set-prop 12 307 1 &
 #/usr/bin/libinput-gestures &
 sleep 3; xmodmap ~/.Xmodmap & 
+xbindkeys&
 #redshift&

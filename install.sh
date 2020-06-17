@@ -5,6 +5,7 @@ cp .Xmodmap ~
 mkdir -p ~/.config
 cp ./libinput-gestures.conf ~/.config/
 cp ./redshift.conf ~/.config/
+cp ./.xbindkeysrc ~
 cp -r ./background ~/.config/
 cp -r ./i3 ~/.config/
 cp -r ./i3status ~/.config/

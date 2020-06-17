@@ -19,6 +19,7 @@ rm ./.zsh/.cwd
 
 cp ~/.config/libinput-gestures.conf .
 cp ~/.config/redshift.conf .
+cp ~/.xbindkeysrc .
 cp -r ~/.config/background .
 cp -r ~/.scripts .
 cp ~/.Xmodmap .
