@@ -27,6 +27,7 @@ source $PLUGIN_DIR/colored-man-pages.zsh
 
 
 # ==================== ALIASES =================================================
+alias sudo='sudo '
 alias grep='grep --color=auto'
 alias ls='ls --color=auto'
 alias ll='ls -l --color=auto'

@@ -29,7 +29,7 @@ sudo mv nvim.appimage /usr/bin/nvim
 sudo apt-get -y install python3-pip
 pip3 install pynvim --upgrade
 
-sudo apt-get -y install xdg-utils npm nodejs cmake xbindkeys
+sudo apt-get -y install xdg-utils npm nodejs cmake xbindkeys xclip
 sudo npm -g install instant-markdown-d
 
 #Need node later than 12 for coc

@@ -64,7 +64,7 @@ Plug 'junegunn/fzf.vim'
 command Split :call fzf#run({
     \'source': 'find . -type f | awk ''!/.git\//'' | awk ''{print substr($1, 3);}''',
     \'down': '30%',
-    \'sink': 'botright split'
+    \'sink': 'split'
     \})
 
 command Vsplit :call fzf#run({

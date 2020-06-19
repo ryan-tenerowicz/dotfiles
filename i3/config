@@ -13,12 +13,13 @@ workspace "2" output $monitor_right
 
 font pango:monospace 9
 focus_follows_mouse no
+mouse_warping output
 focus_wrapping no
 
 new_window pixel 3
 
 bindsym $caps+Return exec "st"
-bindsym $caps+backslash exec "google-chrome-stable --new-window google.com"
+bindsym $caps+backslash exec "google-chrome-stable --scroll-pixels=200 --new-window google.com"
 
 bindsym $caps+w kill
 
@@ -75,6 +76,17 @@ mode "move" {
   bindsym j move down; mode "default"
   bindsym k move up; mode "default"
   bindsym l move right; mode "default"
+
+  bindsym w mode "output_move"
+}
+
+mode "output_move" {
+  bindsym $caps+Escape mode "default"
+
+  bindsym h move workspace to output $monitor_left; mode "default"
+  bindsym j move workspace to output $monitor_center; mode "default"
+  bindsym k move workspace to output $monitor_center; mode "default"
+  bindsym l move workspace to output $monitor_right; mode "default"
 }
 
 
