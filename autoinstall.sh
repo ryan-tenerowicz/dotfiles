@@ -1,6 +1,7 @@
 #!/bin/bash
 
 I3_LINK="https://debian.sur5r.net/i3/pool/main/s/sur5r-keyring/sur5r-keyring_2020.02.03_all.deb keyring.deb SHA256:c5dd35231930e3c8d6a9d9539c846023fe1a08e4b073ef0d2833acd815d80d48"
+I3_LOCK="https://github.com/meskarune/i3lock-fancy.git"
 NEOVIM_LINK="https://github.com/neovim/neovim/releases/download/v0.4.3/nvim.appimage"
 ST_LINK="https://github.com/ryan-tenerowicz/st.git"
 NODEJS_LINK="https://nodejs.org/dist/v12.17.0/node-v12.17.0-linux-x64.tar.xz"
@@ -19,6 +20,10 @@ rm -f keyring.deb
 sudo apt update
 sudo apt -y install i3 i3blocks curl jq feh xdotool
 
+git clone $I3_LOCK
+cd i3lock-fancy
+sudo make install
+cd ..
 
 #install neovim
 #need atleast 0.4 for coc features
