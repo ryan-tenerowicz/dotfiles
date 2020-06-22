@@ -49,9 +49,12 @@ builtin cd $(cat $CWDFILE)
 
 # edit config files
 configs() {
-  CONFIGFILE=$(< ~/.scripts/configs.csv cut -f1 -d "," | tail -n +2 | fzf --height 25% | grep -wf - ~/.scripts/configs.csv | cut -f2 -d "," | xargs)
-  if ! [ -z "$CONFIGFILE" ]; then
-    vim $CONFIGFILE
+  CONFIG_LOCATIONS="$HOME/.scripts/config_locations"
+  CONFIG_FILE=$(ls -A $CONFIG_LOCATIONS | fzf --height 25%)
+  CONFIG_PATH=$(cat $CONFIG_LOCATIONS/$CONFIG_FILE)
+
+  if ! [ -z "$CONFIG_PATH" ]; then
+    vim $CONFIG_PATH
   fi
 }
 
@@ -64,7 +67,7 @@ projects() {
   fi
 }
 
-# dont save some commands in history 
+# dont save some commands in history
 HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
@@ -72,7 +75,7 @@ HISTORY_IGNORE="(cd *|rm *)"
 function zshaddhistory() {
   emulate -L zsh
   setopt extendedglob
-  whence ${${(z)1}[1]} >| /dev/null || return 1 
+  whence ${${(z)1}[1]} >| /dev/null || return 1
   [[ $1 != ${~HISTORY_IGNORE} ]]
 }
 
