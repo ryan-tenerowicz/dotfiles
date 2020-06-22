@@ -28,8 +28,10 @@ command W w
 imap jk <Esc>
 imap kj <Esc>
 
-nnoremap <S-j> j<C-E>
-nnoremap <S-k> k<C-Y>
+"nnoremap <S-j> j<C-E>
+"nnoremap <S-k> k<C-Y>
+nnoremap <S-j> <C-E>
+nnoremap <S-k> <C-Y>
 
 nnoremap <silent> <A-h> :wincmd h<CR>
 nnoremap <silent> <A-j> :wincmd j<CR>
