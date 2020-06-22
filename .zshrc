@@ -50,20 +50,20 @@ builtin cd $(cat $CWDFILE)
 # edit config files
 configs() {
   CONFIG_LOCATIONS="$HOME/.scripts/config_locations"
-  CONFIG_FILE=$(ls -A $CONFIG_LOCATIONS | fzf --height 25%)
-  CONFIG_PATH=$(cat $CONFIG_LOCATIONS/$CONFIG_FILE)
+  CONFIG_FILE=$(ls -A $CONFIG_LOCATIONS | fzf --height 6)
 
-  if ! [ -z "$CONFIG_PATH" ]; then
-    vim $CONFIG_PATH
+  if ! [ -z "$CONFIG_FILE" ]; then
+    vim $(cat $CONFIG_LOCATIONS/$CONFIG_FILE)
   fi
 }
 
 # go to project directory
 projects() {
-  PROJECTPATH="$HOME/projects/"
-  SELPROJECTDIR=$(ls -d $PROJECTPATH*/ | grep -oE "[^/]+/$" | sed 's/.$//' | fzf --height 25%)
-  if ! [ -z "$SELPROJECTDIR" ]; then
-    cd $PROJECTPATH$SELPROJECTDIR
+  PROJECT_PATH="$HOME/projects"
+  SEL_PROJECT_DIR=$(ls -D $PROJECT_PATH | fzf --height 25%)
+
+  if ! [ -z "$SEL_PROJECT_DIR" ]; then
+    cd $PROJECT_PATH/$SEL_PROJECT_DIR
   fi
 }
 
