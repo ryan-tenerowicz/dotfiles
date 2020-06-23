@@ -28,8 +28,6 @@ command W w
 imap jk <Esc>
 imap kj <Esc>
 
-"nnoremap <S-j> j<C-E>
-"nnoremap <S-k> k<C-Y>
 nnoremap <S-J> <C-E>
 nnoremap <S-K> <C-Y>
 
@@ -148,6 +146,7 @@ let g:ale_fixers = {
 Plug 'psliwka/vim-smoothie'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-unimpaired'
+Plug 'suan/vim-instant-markdown', {'rtp': 'after'}
 
 call plug#end()
 filetype plugin indent on
