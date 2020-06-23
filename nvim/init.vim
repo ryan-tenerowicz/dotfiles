@@ -30,8 +30,8 @@ imap kj <Esc>
 
 "nnoremap <S-j> j<C-E>
 "nnoremap <S-k> k<C-Y>
-nnoremap <S-j> <C-E>
-nnoremap <S-k> <C-Y>
+nnoremap <S-J> <C-E>
+nnoremap <S-K> <C-Y>
 
 nnoremap <silent> <A-h> :wincmd h<CR>
 nnoremap <silent> <A-j> :wincmd j<CR>
@@ -54,6 +54,7 @@ nnoremap <A-8> 8gt
 nnoremap <A-9> 9gt
 nnoremap <A-0> 0gt
 
+nnoremap <silent> <F2> :nohl<CR>
 set pastetoggle=<F3>
 
 call plug#begin('~/.config/nvim/plugins')
@@ -94,6 +95,13 @@ autocmd VimEnter * RainbowParentheses
 Plug 'jiangmiao/auto-pairs'
 let g:AutoPairs={'(':')', '[':']', '{':'}', '<':'>', "'''":"'''"}
 
+Plug 'justinmk/vim-sneak'
+let g:sneak#s_next = 1
+map f <Plug>Sneak_f
+map F <Plug>Sneak_F
+map t <Plug>Sneak_t
+map T <Plug>Sneak_T
+
 Plug 'ycm-core/YouCompleteMe'
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_confirm_extra_conf=0
@@ -103,6 +111,10 @@ let g:ycm_key_list_previous_completion = ['<S-TAB>']
 let g:ycm_key_list_stop_completion = ['<UP>', '<DOWN>']
 let g:ycm_seed_identifiers_with_syntax = 0
 let g:ycm_collect_identifiers_from_tags_files = 1
+
+nnoremap <silent> <C-g> :YcmCompleter GoTo<CR>
+nnoremap <silent> <C-f> :YcmCompleter GoToReferences<CR>
+nnoremap <silent> <C-i> :YcmCompleter GoToInclude<CR>
 
 Plug 'dense-analysis/ale'
 let g:ale_fix_on_save = 1

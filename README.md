@@ -98,3 +98,5 @@ python3 install.py --clangd-completer
 
 pip3 install bandit mypy flake8 vulture yapf isort
 ```
+
+https://github.com/so-fancy/diff-so-fancy#markemptylines

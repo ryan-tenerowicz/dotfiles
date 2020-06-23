@@ -3,9 +3,9 @@ exec ~/.scripts/startup
 set $caps Mod1
 set $windows Mod4
 
-set $monitor_left "Virtual3"
+set $monitor_left "Virtual2"
 set $monitor_center "Virtual1"
-set $monitor_right "Virtual2"
+set $monitor_right "Virtual3"
 
 workspace "5" output $monitor_left
 workspace "1" output $monitor_center
@@ -77,15 +77,14 @@ mode "move" {
   bindsym k move up; mode "default"
   bindsym l move right; mode "default"
 
-  bindsym w mode "output_move"
+  bindsym $caps+w mode "output_move"
 }
 
 mode "output_move" {
   bindsym $caps+Escape mode "default"
 
   bindsym h move workspace to output $monitor_left; mode "default"
-  bindsym j move workspace to output $monitor_center; mode "default"
-  bindsym k move workspace to output $monitor_center; mode "default"
+  bindsym space move workspace to output $monitor_center; mode "default"
   bindsym l move workspace to output $monitor_right; mode "default"
 }
 
