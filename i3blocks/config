@@ -40,6 +40,8 @@ interval=99999999
 
 [bandwidth]
 command=~/.scripts/i3blocks/bandwidth
+min_width=90
+align=right
 interval=1
 markup=pango
 color=#34A853
