@@ -39,9 +39,8 @@ separator=false
 interval=99999999
 
 [bandwidth]
-command=~/.scripts/i3blocks/bandwidth2
-label=↓↑
-interval=persist
+command=~/.scripts/i3blocks/bandwidth
+interval=1
 markup=pango
 color=#34A853
 

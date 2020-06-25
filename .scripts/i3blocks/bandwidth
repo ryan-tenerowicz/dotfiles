@@ -16,26 +16,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-INTERFACE="wlp60s0"
+INTERFACE="ens33"
 INLABEL="▼ "
 OUTLABEL="▲ "
-
-# Get custom IN and OUT labels if provided by command line arguments
-while [[ $# -gt 1 ]]; do
-    key="$1"
-    case "$key" in 
-        -i|--inlabel)
-            INLABEL="$2"
-            shift;;
-        -o|--outlabel)
-            OUTLABEL="$2"
-            shift;;
-    esac
-    shift
-done
-
-[[ -z "$INLABEL" ]] && INLABEL="IN "
-[[ -z "$OUTLABEL" ]] && OUTLABEL="OUT "
 
 # Use the provided interface, otherwise the device used for the default route.
 if [[ -z $INTERFACE ]] && [[ -n $BLOCK_INSTANCE ]]; then
@@ -49,7 +32,7 @@ fi
 
 # Issue #36 compliant.
 if ! [ -e "/sys/class/net/${INTERFACE}/operstate" ] || \
-    (! [ "$TREAT_UNKNOWN_AS_UP" = "1" ] && 
+    (! [ "$TREAT_UNKNOWN_AS_UP" = "1" ] &&
     ! [ "`cat /sys/class/net/${INTERFACE}/operstate`" = "up" ])
 then
     echo "$INTERFACE down"
@@ -59,7 +42,7 @@ then
 fi
 
 # path to store the old results in
-path="/dev/shm/$(basename $0)-${INTERFACE}"
+path="/tmp/network"
 
 # grabbing data for each adapter.
 read rx < "/sys/class/net/${INTERFACE}/statistics/rx_bytes"
