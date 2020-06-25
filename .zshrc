@@ -50,7 +50,9 @@ builtin cd $(cat $CWDFILE)
 # edit config files
 configs() {
   CONFIG_LOCATIONS="$HOME/.scripts/config_locations"
-  CONFIG_FILE=$(ls -A $CONFIG_LOCATIONS | fzf --height 6)
+  COUNT=$(($(ls -A $CONFIG_LOCATIONS | wc -w) + 2))
+  [[ $COUNT -gt 12 ]] && COUNT=12
+  CONFIG_FILE=$(ls -A $CONFIG_LOCATIONS | fzf --height $COUNT)
 
   if ! [ -z "$CONFIG_FILE" ]; then
     vim $(cat $CONFIG_LOCATIONS/$CONFIG_FILE)
@@ -60,7 +62,9 @@ configs() {
 # go to project directory
 projects() {
   PROJECT_PATH="$HOME/projects"
-  SEL_PROJECT_DIR=$(ls -D $PROJECT_PATH | fzf --height 25%)
+  COUNT=$(($(ls -A $PROJECT_PATH | wc -w) + 2))
+  [[ $COUNT -gt 12 ]] && COUNT=12
+  SEL_PROJECT_DIR=$(ls -D $PROJECT_PATH | fzf --height $COUNT)
 
   if ! [ -z "$SEL_PROJECT_DIR" ]; then
     cd $PROJECT_PATH/$SEL_PROJECT_DIR
