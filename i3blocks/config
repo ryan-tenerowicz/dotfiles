@@ -1,5 +1,5 @@
 [spy]
-command=~/.scripts/i3blocks/stonks/ticker SPY GOOG
+command=~/.scripts/i3blocks/stonks/ticker SPY GOOG TVIX
 markup=pango
 interval=300
 
