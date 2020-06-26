@@ -14,11 +14,18 @@ query () {
   echo $results | jq -r ".[] | select(.symbol == \"$1\") | .$2"
 }
 
+DISPLAY_STRING=""
 
 for symbol in $(IFS=' '; echo "${SYMBOLS[*]}"); do
   state=$(query $symbol 'marketState')
   price=$(query $symbol 'regularMarketPrice')
   percent=$(query $symbol 'regularMarketChangePercent')
+
+  if [[ -z $DISPLAY_STRING ]]; then
+    if [[ $state != "REGULAR" ]]; then
+      DISPLAY_STRING="<span foreground=\"#FFEA00\">==CLOSED==</span> "
+    fi
+  fi
 
   PERCENTCOLOR=#34A853
   if [[ $percent == 0 ]]; then
@@ -26,13 +33,10 @@ for symbol in $(IFS=' '; echo "${SYMBOLS[*]}"); do
   elif [[ $percent =~ "-" ]]; then
     PERCENTCOLOR=#EA4225
   fi
-
-  printf "%s $%.2f <span foreground=\"%s\">%.2f%%</span> " \
-    $symbol $price $PERCENTCOLOR $percent
+  DISPLAY_STRING="${DISPLAY_STRING} \
+    $(printf '%s <span foreground=\"#adadad">$%.2f</span>
+      <span foreground=\"%s\">%.2f%%</span> ' \
+      $symbol $price $PERCENTCOLOR $percent)"
 done
 
-if [ $state != "REGULAR"  ]; then
-  printf "<span foreground=\"#FFEA00\">==CLOSED==</span>"
-fi
-
-printf "\n"
+echo $DISPLAY_STRING
