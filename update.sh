@@ -4,11 +4,11 @@ cp -r ~/.config/i3 .
 #cp -r ~/.config/i3status .
 cp -r ~/.config/i3blocks .
 
-#cp ~/.vimrc .
-#cp -r ~/.vim .
-#rm -rf ./.vim/bundle/
-cp -r ~/.config/nvim .
-rm -rf ./nvim/plugins/
+cp ~/.vimrc .
+cp -r ~/.vim .
+rm -rf ./.vim/plugins/
+#cp -r ~/.config/nvim .
+#rm -rf ./nvim/plugins/
 
 #cp ~/.bashrc .
 #cp ~/.inputrc .

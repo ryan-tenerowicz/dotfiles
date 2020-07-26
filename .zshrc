@@ -25,27 +25,27 @@ source /usr/local/bin/virtualenvwrapper.sh
 source ~/.fzf.zsh
 source $PLUGIN_DIR/colored-man-pages.zsh
 
-
-# ==================== ALIASES =================================================
-alias sudo='sudo '
-alias grep='grep --color=auto'
-alias ls='ls --color=auto'
-alias ll='ls -l --color=auto'
-alias mkvirtualenv="mkvirtualenv --python=python3"
-alias vim='nvim'
-
-# open terminal to last changed directory
+# =================== STARTUP =================================================
 CWDFILE=~/.zsh/.cwd
-cd() {
-  builtin cd $1
-  echo $(pwd) > $CWDFILE
-}
-
 if [[ ! -f $CWDFILE  ]]; then
   touch $CWDFILE
   echo '$HOME' > $CWDFILE
 fi
 builtin cd $(cat $CWDFILE)
+
+
+# ==================== ALIASES ================================================
+alias sudo='sudo '
+alias grep='grep --color=auto'
+alias ls='ls --color=auto'
+alias ll='ls -l --color=auto'
+alias mkvirtualenv="mkvirtualenv --python=python3"
+
+# open terminal to last changed directory
+cd() {
+  builtin cd $1
+  echo $(pwd) > $CWDFILE
+}
 
 # edit config files
 configs() {

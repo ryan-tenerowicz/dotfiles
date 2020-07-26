@@ -1,93 +1,42 @@
 set nocompatible
 filetype off
-set clipboard=unnamedplus
-set mouse=a
-if has("mouse_sgr")
-    set ttymouse=sgr
-else
-    set ttymouse=xterm2
-end
-set number relativenumber
-set backspace=indent,eol,start
-set tabstop=2
-set shiftwidth=2
-set expandtab
 set autoindent
-"set so=999
+set backspace=indent,eol,start
+set clipboard=unnamedplus
+set completeopt-=preview
+set expandtab
 set laststatus=2
+set mouse=a
+set noshowmode
+set number relativenumber
+set shiftwidth=2
+set shortmess+=c
 set showcmd
+set signcolumn=yes
+set splitright
 set splitbelow
 set t_Co=256
-set completeopt-=preview
+set tabstop=2
+set ttimeout
+set ttimeoutlen=50
+set updatetime=100
+
 color molokai
-
-highlight Comment cterm=bold
-
-
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-
-Bundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
-
-Plugin 'ycm-core/YouCompleteMe'
-let g:ycm_autoclose_preview_window_after_completion=1
-let g:ycm_confirm_extra_conf=0
-let g:ycm_show_diagnostics_ui = 0
-let g:ycm_key_list_select_completion = ['<TAB>']
-let g:ycm_key_list_previous_completion = ['<S-TAB>']
-let g:ycm_key_list_stop_completion = ['<C-y>', '<UP>', '<DOWN>']
-let g:ycm_seed_identifiers_with_syntax = 0
-let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_autoclose_preview_window_after_insertion = 1
-
-
-Plugin 'dense-analysis/ale'
-let g:ale_fix_on_save = 1
-let g:ale_linters_explicit = 1
-
-Plugin 'jiangmiao/auto-pairs'
-let g:AutoPairs={'(':')', '[':']', '{':'}', "'''":"'''"}
-
-Plugin 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
-Plugin 'junegunn/fzf.vim'
-
-Plugin 'junegunn/rainbow_parentheses.vim'
-let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
-autocmd VimEnter * RainbowParentheses
-
-
-Plugin 'psliwka/vim-smoothie'
-Plugin 'Chiel92/vim-autoformat'
-Plugin 'chrisbra/csv.vim'
-Plugin 'suan/vim-instant-markdown', {'rtp': 'after'}
-
-call vundle#end()
-filetype plugin indent on
-syntax on
 
 command W w
 
-command Split :call fzf#run({
-\   'down': '30%',
-\   'sink': 'botright split' })
-
-command Vsplit :call fzf#run({
-\   'down': '30%',
-\   'sink': 'vertical split' })
-
-imap jk <Esc>
-imap kj <Esc>
-
-set pastetoggle=<F3>
-
-nnoremap <S-j> <C-E>j
-nnoremap <S-k> <C-Y>k
+nnoremap <S-J> <C-E><C-E><C-E><C-E><C-E><C-E><C-E>
+nnoremap <S-K> <C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y>
 
 nnoremap h :wincmd h<CR>
 nnoremap j :wincmd j<CR>
 nnoremap k :wincmd k<CR>
 nnoremap l :wincmd l<CR>
+
+inoremap <silent> h <ESC>:wincmd h<CR>
+inoremap <silent> j <ESC>:wincmd j<CR>
+inoremap <silent> k <ESC>:wincmd k<CR>
+inoremap <silent> l <ESC>:wincmd l<CR>
 
 nnoremap 1 1gt
 nnoremap 2 2gt
@@ -100,28 +49,94 @@ nnoremap 8 8gt
 nnoremap 9 9gt
 nnoremap 0 0gt
 
-nnoremap g :silent! exe printf('match IncSearch /\<%s\>/', expand('<cword>'))<CR>
+nnoremap <silent> <F2> :nohl<CR>
+set pastetoggle=<F3>
 
-""0	Black   1	Maroon   2	Green
-""3	Olive   4	Navy     5	Purple 
-""6	Teal    7	Silver   8	Grey 
-""9	Red    10	Lime    11	Yellow
-""12	Blue   13	Fuchsia 14	Aqua 
-""15	White
-"hi statusline ctermfg=235 ctermbg=15
-"au InsertEnter * hi statusline ctermfg=6 ctermbg=0
-"au InsertLeave * hi statusline ctermfg=235 ctermbg=15
+call plug#begin('~/.vim/plugins')
+Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
+Plug 'junegunn/fzf.vim'
+command Split :call fzf#run({
+    \'source': 'find . -type f | awk ''!/.git\//'' | awk ''{print substr($1, 3);}''',
+    \'down': '30%',
+    \'sink': 'split'
+    \})
+command Vsplit :call fzf#run({
+    \'source': 'find . -type f | awk ''!/.git\//'' | awk ''{print substr($1, 3);}''',
+    \'down': '30%',
+    \'sink': 'vertical split'
+    \})
+command Edit :call fzf#run({
+    \'source': 'find . -type f | awk ''!/.git\//'' | awk ''{print substr($1, 3);}''',
+    \'down': '30%',
+    \'sink': 'edit'
+    \})
+command Tab :call fzf#run({
+    \'source': 'find . -type f | awk ''!/.git\//'' | awk ''{print substr($1, 3);}''',
+    \'down': '30%',
+    \'sink': 'tabedit'
+    \})
+
+Plug 'junegunn/rainbow_parentheses.vim'
+let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}'], ['<', '>']]
+autocmd VimEnter * RainbowParentheses
+
+Plug 'jiangmiao/auto-pairs'
+let g:AutoPairs={'(':')', '[':']', '{':'}', '<':'>', "'''":"'''"}
+
+Plug 'justinmk/vim-sneak'
+let g:sneak#s_next = 1
+map f <Plug>Sneak_f
+map F <Plug>Sneak_F
+map t <Plug>Sneak_t
+map T <Plug>Sneak_T
+
+Plug 'ycm-core/YouCompleteMe'
+let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_confirm_extra_conf=0
+let g:ycm_show_diagnostics_ui = 0
+let g:ycm_key_list_select_completion = ['<TAB>']
+let g:ycm_key_list_previous_completion = ['<S-TAB>']
+let g:ycm_key_list_stop_completion = ['<UP>', '<DOWN>']
+let g:ycm_seed_identifiers_with_syntax = 0
+let g:ycm_collect_identifiers_from_tags_files = 1
+nnoremap <silent> <C-g> :YcmCompleter GoTo<CR>
+nnoremap <silent> <C-f> :YcmCompleter GoToReferences<CR>
+nnoremap <silent> <C-i> :YcmCompleter GoToInclude<CR>
+
+Plug 'dense-analysis/ale'
+let g:ale_fix_on_save = 1
+let g:ale_linters_explicit = 1
+let g:ale_linters = {
+    \'python': ['bandit', 'mypy', 'flake8', 'vulture'],
+    \}
+let g:ale_fixers = {
+    \'*': ['remove_trailing_lines', 'trim_whitespace'],
+    \'python': ['yapf', 'isort', 'add_blank_lines_for_python_control_statements'],
+    \}
+
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"highlight CocHighlightRead ctermfg=81
+""autocmd CursorHold * silent call CocActionAsync('highlight')
+"inoremap <silent><expr> <TAB>
+"      \ pumvisible() ? "\<C-n>" :
+"      \ <SID>check_back_space() ? "\<TAB>" :
+"      \ coc#refresh()
+"function! s:check_back_space() abort
+"    let col = col('.') - 1
+"    return !col || getline('.')[col - 1]  =~# '\s'
+"endfunction
+"inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 "
-"" Formats the statusline
-"set statusline=%f                           " file name
-"set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
-"set statusline+=%{&ff}] "file format
-"set statusline+=%y      "filetype
-"set statusline+=%h      "help file flag
-"set statusline+=%m      "modified flag
-"set statusline+=%r      "read only flag
-"set statusline+=\ %=                        " align left
-"set statusline+=Line:%l/%L[%p%%]            " line X of Y [percent of file]
-"set statusline+=\ Col:%c                    " current column
-"set statusline+=\ Buf:%n                    " Buffer number
-"set statusline+=\ [%b][0x%B]\               " ASCII and byte code under cursor
+"nmap <silent> <C-g> <Plug>(coc-definition)
+"nmap <silent> <C-f> <Plug>(coc-references)
+
+
+Plug 'psliwka/vim-smoothie'
+Plug 'itchyny/lightline.vim'
+Plug 'tpope/vim-unimpaired'
+Plug 'suan/vim-instant-markdown', {'rtp': 'after'}
+Plug 'tpope/vim-surround'
+
+call plug#end()
+filetype plugin indent on
+syntax on

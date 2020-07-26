@@ -66,7 +66,7 @@ neovim
 https://github.com/neovim/neovim/releases Download appimage
 
 sudo cp ./nvim.appimage /usr/bin/nvim
-pip3 install pynvim --upgrade 
+pip3 install pynvim --upgrade
 
 Plug Install
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
@@ -93,10 +93,12 @@ https://github.com/ycm-core/YouCompleteMe
 ```
 sudo apt install build-essential cmake python3-dev
 cd ~/.vim/bundle/YouCompleteMe
-python3 install.py --clangd-completer 
+python3 install.py --clangd-completer
 
 
 pip3 install bandit mypy flake8 vulture yapf isort
 ```
 
 https://github.com/so-fancy/diff-so-fancy#markemptylines
+
+https://github.com/sharkdp/bat
