@@ -5,6 +5,7 @@ set backspace=indent,eol,start
 set clipboard=unnamedplus
 set completeopt-=preview
 set expandtab
+set incsearch
 set laststatus=2
 set mouse=a
 set noshowmode
