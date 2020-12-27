@@ -1,4 +1,12 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
-let g:netrw_dirhist_1='/home/ryan/.vim/colors'
-let g:netrw_dirhist_2='/home/ryan/.vim/autoload'
+let g:netrw_dirhistcnt =0
+let g:netrw_dirhist_0='/home/ryan/.zsh/fzf'
+let g:netrw_dirhist_9='/home/ryan/test'
+let g:netrw_dirhist_8='/google/src/cloud/rtenerowicz/pokemon/google3/experimental/users/rtenerowicz/pokemon/python/logs'
+let g:netrw_dirhist_7='/google/src/cloud/rtenerowicz/logcatcher/google3/security/data_access/logservice'
+let g:netrw_dirhist_6='/google/src/cloud/rtenerowicz/logcatcher/google3/security/data_access/logservice/util'
+let g:netrw_dirhist_5='/google/src/cloud/rtenerowicz/logcatcher/google3/security/data_access/logservice'
+let g:netrw_dirhist_4='/google/src/cloud/rtenerowicz/logcatcher/google3/security/data_access/logservice/util'
+let g:netrw_dirhist_3='/usr/local/google/home/rtenerowicz'
+let g:netrw_dirhist_2='/google/src/cloud/rtenerowicz/logcatcher/google3/security/data_access/logservice'
+let g:netrw_dirhist_1='/google/src/cloud/rtenerowicz/logcatcher/google3/security/data_access'

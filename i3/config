@@ -2,6 +2,7 @@ exec ~/.scripts/startup
 
 set $caps Mod1
 set $windows Mod4
+set $space Mod5
 
 set $monitor_left "Virtual3"
 set $monitor_center "Virtual1"
@@ -9,7 +10,7 @@ set $monitor_right "Virtual2"
 
 workspace "5" output $monitor_left
 workspace "1" output $monitor_center
-workspace "2" output $monitor_right
+workspace "4" output $monitor_right
 
 font pango:monospace 9
 focus_follows_mouse no
@@ -18,19 +19,25 @@ focus_wrapping no
 
 new_window pixel 3
 
-bindsym $caps+Return exec "st"
-bindsym $caps+backslash exec "google-chrome-stable --scroll-pixels=200 --new-window google.com"
+bindsym $caps+e floating toggle
+floating_modifier $caps
 
-bindsym $caps+w kill
+bindsym $caps+Return exec "gnome-terminal"
+bindsym $caps+backslash exec "google-chrome-stable --new-window google.com"
 
-bindsym $caps+d exec --no-startup-id i3-dmenu-desktop
+bindsym $caps+$space+w kill
+
+bindsym $caps+$space+d exec --no-startup-id i3-dmenu-desktop
 
 bindsym $caps+h focus left
 bindsym $caps+j focus down
 bindsym $caps+k focus up
 bindsym $caps+l focus right
 
-bindsym $caps+minus split toggle
+bindsym $caps+f fullscreen toggle
+
+bindsym $caps+$space+minus split vertical
+bindsym $caps+$space+backslash split horizontal
 
 bindsym $caps+1 workspace 1
 bindsym $caps+2 workspace 2
@@ -41,7 +48,6 @@ bindsym $caps+6 workspace 6
 bindsym $caps+7 workspace 7
 bindsym $caps+8 workspace 8
 bindsym $caps+9 workspace 9
-bindsym $caps+0 workspace 10
 
 
 # exit i3 (logs you out of your X session)
@@ -49,13 +55,6 @@ bindsym $windows+q exec "i3-nagbar -t warning -m 'Shutdown?' -b 'Shutdown' 'sudo
 
 # lock the screen
 bindsym $windows+l exec "i3lock-fancy -t '' -n"
-
-# change brightness
-bindsym $windows+XF86MonBrightnessDown exec "sudo /home/ryan/.scripts/brightnessdown"
-bindsym $windows+XF86MonBrightnessUp exec "sudo /home/ryan/.scripts/brightnessup"
-
-bindsym XF86AudioLowerVolume exec "amixer -D pulse sset Master 2%-"
-bindsym XF86AudioRaiseVolume exec "amixer -D pulse sset Master 2%+"
 
 bindsym $caps+m mode "move"
 mode "move" {
@@ -70,17 +69,15 @@ mode "move" {
   bindsym 7 move container to workspace 7; workspace 7; mode "default"
   bindsym 8 move container to workspace 8; workspace 8; mode "default"
   bindsym 9 move container to workspace 9; workspace 9; mode "default"
-  bindsym 0 move container to workspace 10; workspace 10; mode "default"
 
   bindsym h move left; mode "default"
   bindsym j move down; mode "default"
   bindsym k move up; mode "default"
   bindsym l move right; mode "default"
-
-  bindsym $caps+w mode "output_move"
 }
 
-mode "output_move" {
+bindsym $caps+$space+m mode "workspace_move"
+mode "workspace_move" {
   bindsym $caps+Escape mode "default"
 
   bindsym h move workspace to output $monitor_left; mode "default"
@@ -89,7 +86,7 @@ mode "output_move" {
 }
 
 
-bindsym $caps+r mode "resize"
+bindsym $caps+$space+r mode "resize"
 mode "resize" {
   bindsym $caps+Escape mode "default"
 
@@ -100,32 +97,8 @@ mode "resize" {
 }
 
 
-
-bindsym $caps+space mode "external"
-mode "external"{
-  bindsym $caps+Escape mode "default"
-
-  bindsym --release h exec "xdotool getactivewindow key 'alt+h'; i3-msg mode default"
-  bindsym --release j exec "xdotool getactivewindow key 'alt+j'; i3-msg mode default"
-  bindsym --release k exec "xdotool getactivewindow key 'alt+k'; i3-msg mode default"
-  bindsym --release l exec "xdotool getactivewindow key 'alt+l'; i3-msg mode default"
-
-  bindsym --release w exec "xdotool key 'alt+w'; i3-msg mode default"
-
-  bindsym --release 1 exec "xdotool getactivewindow key 'alt+1'; i3-msg mode default"
-  bindsym --release 2 exec "xdotool getactivewindow key 'alt+2'; i3-msg mode default"
-  bindsym --release 3 exec "xdotool getactivewindow key 'alt+3'; i3-msg mode default"
-  bindsym --release 4 exec "xdotool getactivewindow key 'alt+4'; i3-msg mode default"
-  bindsym --release 5 exec "xdotool getactivewindow key 'alt+5'; i3-msg mode default"
-  bindsym --release 6 exec "xdotool getactivewindow key 'alt+6'; i3-msg mode default"
-  bindsym --release 7 exec "xdotool getactivewindow key 'alt+7'; i3-msg mode default"
-  bindsym --release 8 exec "xdotool getactivewindow key 'alt+8'; i3-msg mode default"
-  bindsym --release 9 exec "xdotool getactivewindow key 'alt+9'; i3-msg mode default"
-  bindsym --release 0 exec "xdotool getactivewindow key 'alt+0'; i3-msg mode default"
-
-}
-
 bar {
+        font pango:Exo2 10
         status_command i3blocks
         position top
 }

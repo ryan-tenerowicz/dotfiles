@@ -67,7 +67,7 @@ endif
 "   built-in below (use 'from __future__ import print_function' in 2.6)
 "
 syn keyword pythonConstant	False None True
-syn keyword pythonStatement	as assert break continue del exec global
+syn keyword pythonStatement	as assert break continue del exec global await async
 syn keyword pythonStatement	lambda nonlocal pass print return with yield
 syn keyword pythonStatement	def nextgroup=pythonFunction skipwhite
 syn keyword pythonStatement class nextgroup=pythonClass skipwhite

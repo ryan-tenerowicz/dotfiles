@@ -40,7 +40,7 @@ hi Label           ctermfg=229               cterm=none
 hi Macro           ctermfg=193
 hi SpecialKey      ctermfg=81
 
-hi MatchParen      ctermfg=233  ctermbg=208 cterm=bold
+hi MatchParen      ctermfg=226  ctermbg=235 cterm=bold
 hi ModeMsg         ctermfg=229
 hi MoreMsg         ctermfg=229
 hi Operator        ctermfg=161
@@ -92,7 +92,7 @@ hi WarningMsg      ctermfg=231 ctermbg=238   cterm=bold
 hi WildMenu        ctermfg=81  ctermbg=16
 
 hi Comment         ctermfg=59
-hi CursorColumn                ctermbg=236
+hi CursorColumn                ctermbg=237
 hi ColorColumn                 ctermbg=236
 hi LineNr          ctermfg=250 ctermbg=236
 hi NonText         ctermfg=59

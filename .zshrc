@@ -1,5 +1,13 @@
 PLUGIN_DIR=~/.zsh/plugins
 
+# ================== STARTUP ==================================================
+CWDFILE=~/.zsh/cwd
+if [[ ! -f $CWDFILE  ]]; then
+  touch $CWDFILE
+  echo '$HOME' > $CWDFILE
+fi
+builtin cd $(cat $CWDFILE)
+
 # ==================== PROMPT =================================================
 source $PLUGIN_DIR/zsh-vim-mode.zsh
 MODE_CURSOR_VIINS="#00ff00 steady bar"
@@ -17,21 +25,14 @@ MODE_INDICATOR_VISUAL='v'
 MODE_INDICATOR_VLINE='vl'
 
 setopt PROMPT_SUBST
-PROMPT='%B%F{red}[%F{green}%n%F{cyan}%b@%B%F{green}%M %F{blue}%~%F{red}]%F{gray}%b${MODE_INDICATOR_PROMPT} '
+PROMPT='%B%F{red}[%F{green}%n%b%F{cyan}@%B%F{green}desktop %F{blue}%~%F{red}]%F{gray}%b${MODE_INDICATOR_PROMPT} '
 
 
 # =================== LOAD PLUGINS ============================================
-source /usr/local/bin/virtualenvwrapper.sh
-source ~/.fzf.zsh
+source $PLUGIN_DIR/fzf.zsh
 source $PLUGIN_DIR/colored-man-pages.zsh
-
-# =================== STARTUP =================================================
-CWDFILE=~/.zsh/.cwd
-if [[ ! -f $CWDFILE  ]]; then
-  touch $CWDFILE
-  echo '$HOME' > $CWDFILE
-fi
-builtin cd $(cat $CWDFILE)
+source $PLUGIN_DIR/async.zsh
+source /usr/local/bin/virtualenvwrapper.sh
 
 
 # ==================== ALIASES ================================================
@@ -41,15 +42,9 @@ alias ls='ls --color=auto'
 alias ll='ls -l --color=auto'
 alias mkvirtualenv="mkvirtualenv --python=python3"
 
-# open terminal to last changed directory
-cd() {
-  builtin cd $1
-  echo $(pwd) > $CWDFILE
-}
-
 # edit config files
+CONFIG_LOCATIONS="$HOME/.scripts/config_locations"
 configs() {
-  CONFIG_LOCATIONS="$HOME/.scripts/config_locations"
   COUNT=$(($(ls -A $CONFIG_LOCATIONS | wc -w) + 2))
   [[ $COUNT -gt 12 ]] && COUNT=12
   CONFIG_FILE=$(ls -A $CONFIG_LOCATIONS | fzf --height $COUNT)
@@ -60,15 +55,26 @@ configs() {
 }
 
 # go to project directory
-projects() {
-  PROJECT_PATH="$HOME/projects"
-  COUNT=$(($(ls -A $PROJECT_PATH | wc -w) + 2))
-  [[ $COUNT -gt 12 ]] && COUNT=12
-  SEL_PROJECT_DIR=$(ls -D $PROJECT_PATH | fzf --height $COUNT)
+#PROJECT_PATH="/google/src/cloud/rtenerowicz"
+#PROJECT_LOCATIONS="$HOME/.scripts/project_locations"
+#projects() {
+#  COUNT=$(($(ls -D $PROJECT_PATH | grep -vP "(^fig-.*|^G3DOC-.*)" | wc -w) + 2))
+#  [[ $COUNT -gt 12 ]] && COUNT=12
+#  SEL_PROJECT_DIR=$(ls -D $PROJECT_PATH | grep -vP "(^fig-.*|^G3DOC-.*)" | fzf --height $COUNT)
+#
+#  if ! [ -z "$SEL_PROJECT_DIR" ]; then
+#    if [[ ! -f $PROJECT_LOCATIONS/$SEL_PROJECT_DIR ]]; then
+#      echo $PROJECT_PATH/$SEL_PROJECT_DIR/google3 > $PROJECT_LOCATIONS/$SEL_PROJECT_DIR
+#    fi
+#
+#    cd $(cat $PROJECT_LOCATIONS/$SEL_PROJECT_DIR)
+#  fi
+#}
 
-  if ! [ -z "$SEL_PROJECT_DIR" ]; then
-    cd $PROJECT_PATH/$SEL_PROJECT_DIR
-  fi
+# open terminal to last changed directory
+cd() {
+  builtin cd $1
+  echo $(pwd) > $CWDFILE
 }
 
 # dont save some commands in history
@@ -88,7 +94,7 @@ function zshaddhistory() {
 source $PLUGIN_DIR/zsh-autosuggestions.zsh
 bindkey 'OP' autosuggest-accept
 
-autoload -U +X compinit && compinit #-C
+autoload -U compinit && compinit
 
 # dont auto select first entry
 zstyle ':completion:::*:default' menu no select
@@ -99,7 +105,6 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 # only show directories for ls
 zstyle ':completion:*:ls:*' file-patterns '*(/)'
-
 
 #zstyle ':completion:*:*:temp:*' tag-order 'commands functions'
 #zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
@@ -118,4 +123,3 @@ zstyle ':completion:*:ls:*' file-patterns '*(/)'
 #F10 ^[[21~
 #F11 ^[[23~
 #F12 ^[[24~
-#
