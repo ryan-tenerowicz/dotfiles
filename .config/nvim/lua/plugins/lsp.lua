@@ -31,7 +31,7 @@ return {
     dependencies = { 'saghen/blink.cmp' },
     opts = {
       servers = {
-        lua_ls = {},
+        --lua_ls = {},
         go_ls = {},
         python_ls = {},
       }
