@@ -1,5 +1,7 @@
 vim.opt.backspace = {"indent", "eol", "start"} -- normal backspace behavior
 vim.keymap.set({'n', 'i', 'v'}, '<MiddleMouse>', '<Nop>', {silent = true})
+vim.g.loaded_netrw = 1 -- disable netrw for nvim-tree
+vim.g.loaded_netrwPlugin = 1
 vim.opt.number = true -- show line number
 vim.opt.mouse = "a" -- allow mouse clicks
 vim.opt.virtualedit = "onemore" -- allow cursor to move past end of line onto newline char

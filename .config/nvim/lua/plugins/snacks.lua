@@ -5,6 +5,7 @@ return {
     lazy = false,
     opts = {
       bigfile = {enabled = true},
+      bufdelete = {enabled = true},
       scroll = {enabled = true},
       quickfile = {enabled = true},
       picker = {
@@ -47,6 +48,7 @@ return {
       -- { "<C-p>", function() Snacks.picker.files() end, desc = "Smart Find Files" }, -- files will only search within rootdir which is set in options.lua
       { "<C-k>", function() Snacks.picker.pick("keymaps", {layout={hidden={"preview"}}}) end, desc = "Keymaps" },
       { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
+      { "<leader>q", function() Snacks.bufdelete() end, desc = "bufdelete"},
     },
   },
 }

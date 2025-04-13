@@ -30,5 +30,12 @@ return {
       vim.keymap.set({"n", "v"}, "c", "\"_c") -- c doesn't yank the text
       vim.keymap.set({"v"}, "p", "\"_dP") -- p doesn't overwrite copy buffer
     end,
-  }
+  },
+  {
+    "gbprod/yanky.nvim",
+    commit = "98b9c21d3c06d79f68fd9d471dcc28fc6d2d72ef",
+    event = "VeryLazy",
+    opts = {},
+    -- add keyconfigs https://github.com/gbprod/yanky.nvim
+  },
 }

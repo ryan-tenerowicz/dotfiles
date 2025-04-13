@@ -32,8 +32,8 @@ return {
     opts = {
       servers = {
         --lua_ls = {},
-        go_ls = {},
-        python_ls = {},
+        --go_ls = {},
+        --python_ls = {},
       }
     },
     config = function(_, opts)
