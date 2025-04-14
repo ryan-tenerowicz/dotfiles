@@ -25,11 +25,13 @@ return {
     "petertriho/nvim-scrollbar",
     commit = "6994eb9f73d5fdc36ee2c8717940e8c853e51a49",
     event = "VeryLazy",
+    enabled = false,
     config = function()
       local colors = require("tokyonight.colors")
       require("scrollbar").setup({
+        hide_if_all_visible = true,
         handle = {
-            color = colors.bg_highlight,
+          color = "#445588",
         },
         marks = {
             Search = { color = colors.orange },
@@ -42,4 +44,40 @@ return {
       })
     end,
   },
+  {
+    "dstein64/nvim-scrollview",
+    event = "VeryLazy",
+    enabled = true,
+    config = function()
+      require('scrollview').setup({
+        current_only = true,
+      })
+    end,
+  },
+  {
+    "echasnovski/mini.map",
+    event = "VeryLazy",
+    enabled = false,
+    config = function()
+      require('mini.map').setup({
+        window = {
+          focusable = true,
+        },
+      })
+      MiniMap.open()
+    end,
+  },
+  {
+    "gorbit99/codewindow.nvim",
+    event = "VeryLazy",
+    enabled = false,
+    config = function()
+      local codewindow = require('codewindow')
+      codewindow.setup({
+        auto_enable = true,
+        minimap_width = 5,
+      })
+      codewindow.apply_default_keybinds()
+    end,
+  }
 }
