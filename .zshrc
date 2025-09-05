@@ -58,7 +58,6 @@ export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 HISTSIZE=1000000000
 # hist size saved to file
 SAVEHIST=1000000000
-setopt HIST_FIND_NO_DUPS
-#setopt HIST_IGNORE_ALL_DUPS
-setopt share_history
+setopt HIST_IGNORE_ALL_DUPS
+setopt SHARE_HISTORY
 HISTFILE=~/.zsh_history
